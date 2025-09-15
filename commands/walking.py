@@ -12,7 +12,7 @@ while True:
         best_match, score = process.extractOne(walkingDirection, commands.keys(), scorer=fuzz.ratio, score_cutoff=50)
     except Exception as e:
         print(e)
-        print("where do you me want to walk to again?")
+        print("where do you want me to walk to again?")
         continue
     print(best_match ," = ", score)
 
