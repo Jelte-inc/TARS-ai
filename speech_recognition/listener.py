@@ -20,7 +20,8 @@ def listen_and_transcribe():
         while True:
             try:
                 # Luister naar audio
-                audio = recognizer.listen(source, timeout=5, phrase_time_limit=5)
+                audio = recognizer.listen(source, phrase_time_limit=5)
+
                 # Gebruik Google Speech Recognition om de audio om te zetten naar tekst
                 text = recognizer.recognize_google(audio, language="en-US")
                 print("Je zei: ", text)
@@ -30,7 +31,7 @@ def listen_and_transcribe():
                 continue
             except sr.UnknownValueError:
                 # Als de spraak niet verstaanbaar is
-                print("Kon de spraak niet begrijpen, probeer opnieuw.")
+                print("Kon je niet verstaan, probeer opnieuw.")
                 continue
             except sr.RequestError as e:
                 # Als er een probleem is met de Google API
