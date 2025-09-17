@@ -21,6 +21,7 @@ def listen_and_transcribe():
             try:
                 # Luister naar audio
                 audio = recognizer.listen(source, phrase_time_limit=5)
+
                 # Gebruik Google Speech Recognition om de audio om te zetten naar tekst
                 text = recognizer.recognize_google(audio, language="en-US")
                 print("Je zei: ", text)
