@@ -2,36 +2,30 @@ import re
 from fuzzywuzzy import fuzz
 from fuzzywuzzy import process
 
-commands = {"walk left": "left", "walk right": "right", "walk forward": "forward", "walk backward": "backward", "got to sleep": "sleep",}
-walkingDirection = ""
+def walking_commands(user_input:str):
+    commands = {"go left": "left", "go right": "right", "go forward": "forward", "go backward": "backward", "go to sleep": "sleep",}
 
-while True:
-    walkingDirection = input()
-
+    walkingDirection = user_input
     try:
         best_match, score = process.extractOne(walkingDirection, commands.keys(), scorer=fuzz.ratio, score_cutoff=50)
+        print(best_match ," = ", score)
     except Exception as e:
         print(e)
-        print("where do you want me to walk to again?")
-        continue
-    print(best_match ," = ", score)
+        best_match, score = None, None
+
+    if best_match == None:
+        return
 
     amount = re.findall(r'\d+', walkingDirection)
 
-    try:
-        if commands[best_match] == "sleep":
-            print("good bye")
-            break
-        direction = commands[best_match]
-    except:
-        print("direction could not be found in map")
+    if commands[best_match] == "sleep":
+        print("good bye")
+    direction = commands[best_match]
 
     if amount == []:
         inputAmount = input("how many " + direction + " do you want me to go? ")
         amount = re.findall(r'\d+', inputAmount)
         if amount == []:
             print("idiot")
-            continue
 
-
-    print(amount[0] + "", direction)
+        print(amount[0] + "", direction)
