@@ -5,7 +5,7 @@ message_content = ""
 while message_content != "bye bye": 
   
   message_content = input()
- 
+
   message = {'role': 'user', 'content': message_content}
   try:
     for part in ollama.chat(model='tars', messages=[message], stream=True):
