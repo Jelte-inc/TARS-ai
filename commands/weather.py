@@ -1,9 +1,14 @@
 import requests
 import os
+from dotenv import load_dotenv
 
 url = "http://api.weatherapi.com/v1/forecast.json"  
 
 location = ""
+
+load_dotenv()
+
+key = os.getenv("API_KEY")
 
 while True:
     location = input()
