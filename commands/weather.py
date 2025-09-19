@@ -14,7 +14,7 @@ while True:
     location = input()
 
     params = {
-        "key": os.getenv("KEY"),
+        "key": key,
         "q": location,  
     }
 
