@@ -1,6 +1,6 @@
 import requests
+import os
 
-key = "10d79000073d41b5b03105836251909"  
 url = "http://api.weatherapi.com/v1/forecast.json"  
 
 location = ""
@@ -9,7 +9,7 @@ while True:
     location = input()
 
     params = {
-        "key": key,
+        "key": os.getenv("KEY"),
         "q": location,  
     }
 
