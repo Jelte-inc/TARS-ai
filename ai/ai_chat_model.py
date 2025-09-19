@@ -12,3 +12,4 @@ while message_content != "bye bye":
       print(part['message']['content'], end='', flush=True)
   except Exception as e:
     print("something went wrong")
+  print('')
