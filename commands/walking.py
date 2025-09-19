@@ -2,7 +2,7 @@ import re
 from fuzzywuzzy import fuzz
 from fuzzywuzzy import process
 
-commands = {"walk left": "left", "walk right": "right", "walk forward": "forward", "walk backward": "backward", "got to sleep": "sleep",}
+commands = {"go left": "left", "go right": "right", "go forward": "forward", "go backwards": "backwards", "go to sleep": "sleep",}
 walkingDirection = ""
 
 while True:
@@ -26,10 +26,10 @@ while True:
     except:
         print("direction could not be found in map")
 
-    if amount == []:
+    if not amount:
         inputAmount = input("how many " + direction + " do you want me to go? ")
         amount = re.findall(r'\d+', inputAmount)
-        if amount == []:
+        if not amount:
             print("idiot")
             continue
 
