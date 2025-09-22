@@ -15,7 +15,7 @@ def ai(user_input:str):
         full_response = ""
         hoi = False
         i = 0
-        for part in ollama.chat(model='tar', messages=[message], stream=True):
+        for part in ollama.chat(model='tars', messages=[message], stream=True):
           if execute_model_output(full_response) == "hoi":
               print("hoi")
               hoi = True
