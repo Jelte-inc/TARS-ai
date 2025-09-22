@@ -1,6 +1,4 @@
 import speech_recognition as sr
-from alsa_quiet import disable_alsa_errors
-disable_alsa_errors()
  
 def speech_listener():
     recognizer = sr.Recognizer()
@@ -27,5 +25,5 @@ def speech_listener():
                 print(f"Error while connecting to the Google API: {e}")
                 break
             except KeyboardInterrupt:
-                print("\Program stopped.")
+                print("Program stopped.")
                 break
