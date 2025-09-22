@@ -2,8 +2,6 @@ import re
 from fuzzywuzzy import fuzz
 from fuzzywuzzy import process
 
-commands = {"go left": "left", "go right": "right", "go forward": "forward", "go backwards": "backwards", "go to sleep": "sleep",}
-
 def walking_commands(user_input:str):
     commands = {"go left": "left", "go right": "right", "go forward": "forward", "go backward": "backward", "go to sleep": "sleep",}
 
@@ -16,7 +14,7 @@ def walking_commands(user_input:str):
         best_match, score = None, None
 
     if best_match == None:
-        return
+        return 
 
     amount = re.findall(r'\d+', walkingDirection)
 
@@ -25,9 +23,6 @@ def walking_commands(user_input:str):
     direction = commands[best_match]
 
     if not amount:
-        inputAmount = input("how many " + direction + " do you want me to go? ")
-        amount = re.findall(r'\d+', inputAmount)
-        if not amount:
-            print("idiot")
+        return None, direction
 
-        print(amount[0] + "", direction)
+    return amount[0], direction
