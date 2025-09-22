@@ -1,6 +1,8 @@
 import requests
 import os
 from dotenv import load_dotenv
+from fuzzywuzzy import fuzz
+from fuzzywuzzy import process
 
 url = "http://api.weatherapi.com/v1/forecast.json"  
 
@@ -10,15 +12,28 @@ load_dotenv()
 
 key = os.getenv("API_KEY")
 
+if key is None:
+    print("Api key is missing")
+    
+
+
 while True:
     location = input()
+    days_input = input('for when do you want to know the weather? (input in days from today, so today is 0) ')
 
-    days = input('for when do you want to know the weather? (input in days from today, so tomorrow is 1)' )
+    possible_inputs = {'today': 0, 'tomorrow': 1}
+    best_match, score = process.extractOne(days_input, possible_inputs.keys(), scorer=fuzz.ratio, score_cutoff=50)
+
+    if best_match is None:
+        print('best match is None')
+    else:
+        days = possible_inputs[best_match]
+        print(days)
 
     params = {
         "key": key,
-        "q": location,  
-        "days": days
+        "days": days,
+        "q":location
     }
 
     response = requests.get(url, params=params)
