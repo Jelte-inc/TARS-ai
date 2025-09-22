@@ -3,7 +3,7 @@ from fuzzywuzzy import fuzz
 from fuzzywuzzy import process
 
 commands = {"go left": "left", "go right": "right", "go forward": "forward", "go backwards": "backwards", "go to sleep": "sleep",}
-walkingDirection = ""
+
 def walking_commands(user_input:str):
     commands = {"go left": "left", "go right": "right", "go forward": "forward", "go backward": "backward", "go to sleep": "sleep",}
 
