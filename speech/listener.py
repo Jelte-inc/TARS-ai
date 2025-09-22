@@ -1,4 +1,14 @@
+import os
+import sys
+import logging
+from speech.config.suppress_loging import suppress_alsa_errors
+
+suppress_alsa_errors()
+
 import speech_recognition as sr
+
+# Set logging level to reduce verbosity
+logging.getLogger('speech_recognition').setLevel(logging.ERROR)
  
 def speech_listener():
     recognizer = sr.Recognizer()
