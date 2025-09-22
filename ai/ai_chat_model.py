@@ -29,9 +29,7 @@ while message_content.lower() != "bye bye":
             full_response += part['message']['content']
         print('')  # Nieuwe regel na streaming
         # Verwerk de output voor functieaanroep
-        result = execute_model_output(full_response)
-        if result != full_response:
-            print(f"Function result: {result}")
+
     except Exception as e:
         print("Something went wrong:", e)
     print('')
