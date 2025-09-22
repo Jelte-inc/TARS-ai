@@ -1,16 +1,20 @@
 import ollama
+from commands.weather_forecast import weather_forecast
+import datetime
 
 # Functie om modeloutput te verwerken
 def execute_model_output(model_output: str) -> str:
-    if model_output.strip() == "@":    
+    if "@" in model_output:
+      weather_forecast(model_output)    
       return "hoi"
     else:
         return model_output
+
 def ai(user_input:str):
     message_content = user_input
     if user_input == "bye bye":
       return
-    message = {'role': 'user', 'content': message_content}
+    message = {'role': 'user', 'content': message_content + str(datetime.datetime.today())}
     try:
         full_response = ""
         hoi = False
