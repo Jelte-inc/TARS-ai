@@ -5,7 +5,7 @@ def ai(user_input:str):
   if user_input == "bye bye":
     return
   try:
-    for part in ollama.chat(model='gemma3:4b', messages=[message], stream=True):
+    for part in ollama.chat(model='tars', messages=[message], stream=True):
       print(part['message']['content'], end='', flush=True)
   except Exception as e:
     print("something went wrong")
