@@ -1,17 +1,15 @@
 import ollama
 
-
 # Functie om modeloutput te verwerken
 def execute_model_output(model_output: str) -> str:
     if model_output.strip() == "@":    
       return "hoi"
     else:
         return model_output
-
-# Hoofdloop
-message_content = ""
-while message_content.lower() != "bye bye":
-    message_content = input("You: ")
+def ai(user_input:str):
+    message_content = user_input
+    if user_input == "bye bye":
+      return
     message = {'role': 'user', 'content': message_content}
     try:
         full_response = ""
@@ -27,9 +25,7 @@ while message_content.lower() != "bye bye":
                 i += 1
               print(part['message']['content'], end='', flush=True)
             full_response += part['message']['content']
-        print('')  # Nieuwe regel na streaming
-        # Verwerk de output voor functieaanroep
-
-    except Exception as e:
-        print("Something went wrong:", e)
-    print('')
+        print()
+      except Exception as e:
+          print("Something went wrong:", e)
+      print()
