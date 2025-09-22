@@ -4,21 +4,16 @@ from dotenv import load_dotenv
 from fuzzywuzzy import fuzz
 from fuzzywuzzy import process
 
-url = "http://api.weatherapi.com/v1/forecast.json"  
 
-location = ""
+def weather_forcast(user_input:str):
+    url = "http://api.weatherapi.com/v1/forecast.json"  
+    load_dotenv()
+    key = os.getenv("API_KEY")
 
-load_dotenv()
+    if key is None:
+        print("Api key is missing")
 
-key = os.getenv("API_KEY")
-
-if key is None:
-    print("Api key is missing")
-    
-
-
-while True:
-    location = input()
+    location = user_input
     days_input = input('for when do you want to know the weather? (input in days from today, so today is 0) ')
 
     possible_inputs = {'today': 0, 'tomorrow': 1}
@@ -40,7 +35,6 @@ while True:
 
     if response.status_code == 200:
         data = response.json()
-        print(data)
         temp = data['current']['temp_c']  
         precip = data['current']['precip_mm']  
         print(f"Temperature: {temp}°C")
