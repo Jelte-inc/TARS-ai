@@ -4,11 +4,7 @@ import datetime
 
 # Functie om modeloutput te verwerken
 def execute_model_output(model_output: str) -> str:
-    if "@" in model_output:
-      weather_forecast(model_output)    
-      return "hoi"
-    else:
-        return model_output
+    weather_forecast(model_output)    
 
 def ai(user_input:str):
     message_content = user_input
@@ -20,15 +16,16 @@ def ai(user_input:str):
         hoi = False
         i = 0
         for part in ollama.chat(model='tars', messages=[message], stream=True):
-          if execute_model_output(full_response) == "hoi":
-              print("hoi")
-              hoi = True
+          if "@" in full_response:
+             hoi = True
           elif len(full_response) > 1 and not hoi:
             if i == 0:
               print(full_response, end='')
               i += 1
             print(part['message']['content'], end='', flush=True)
           full_response += part['message']['content']
+        if hoi:
+           execute_model_output(full_response)
     except Exception as e:
         print("Something went wrong:", e)
     print()
