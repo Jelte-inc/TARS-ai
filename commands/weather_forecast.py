@@ -5,26 +5,19 @@ from fuzzywuzzy import fuzz
 from fuzzywuzzy import process
 
 
-def weather_forcast(user_input:str):
+def weather_forecast(user_input:str):
     url = "http://api.weatherapi.com/v1/forecast.json"  
     load_dotenv()
     key = os.getenv("API_KEY")
 
     if key is None:
         print("Api key is missing")
-
-    location = user_input
-    days_input = input('for when do you want to know the weather? (input in days from today, so today is 0) ')
-
-    possible_inputs = {'today': 0, 'tomorrow': 1}
-    best_match, score = process.extractOne(days_input, possible_inputs.keys(), scorer=fuzz.ratio, score_cutoff=50)
-
-    if best_match is None:
-        print('best match is None')
-    else:
-        days = possible_inputs[best_match]
-        print(days)
-
+    print(user_input)
+    parts = user_input[1:].strip().split(maxsplit=1)  # haal '@' weg en splits
+    if len(parts) == 2:
+        days, location = parts
+        print("Day:", days)
+        print("Location:", location)
     params = {
         "key": key,
         "days": days,
