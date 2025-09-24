@@ -25,6 +25,9 @@ def ai(user_input:str):
               i += 1
             print(part['message']['content'], end='', flush=True)
           full_response += part['message']['content']
+          if hoi:
+             
     except Exception as e:
         print("Something went wrong:", e)
     print()
+    return full_response
