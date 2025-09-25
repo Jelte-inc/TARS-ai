@@ -1,0 +1,16 @@
+#!/bin/sh
+# Pre-commit hook om requirements.txt bij te werken en toe te voegen
+
+set -e
+
+REQ_FILE="requirements.txt"
+
+echo ">> Updating $REQ_FILE..."
+pip freeze > "$REQ_FILE"
+
+# Controleren of er wijzigingen zijn
+if ! git diff --quiet -- "$REQ_FILE"; then
+  echo ">> Adding updated $REQ_FILE to commit..."
+  git add "$REQ_FILE"
+fi
+
