@@ -33,5 +33,5 @@ def weather_forecast(user_input:str):
         print(f"Temperature: {temp}°C")
         print(f"Rain: {precip} mm")
     else:
-        print(f"Fout: {response.status_code}, {response.json().get('error', {}).get('message', 'Unknown error')}")
+        return f"Fout: {response.status_code}, {response.json().get('error', {}).get('message', 'Unknown error')}"
     return f"Temperature: {temp} Rain: {precip}"

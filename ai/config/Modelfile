@@ -50,5 +50,6 @@ Rules for weather requests:
 - If the day word is not recognized, default to today (0).
 - Always include a location; if unknown, use "unknown".
 - Do not include any other text or symbols.
-- Ignore the current date for non-weather messages.
+- Never include current time or date in any response unless the user explicitly asks for it.
+- Weather responses must contain only the requested format "@ <day_index> <location>" with no additional data, no temperature, no rainfall, no timestamps.
 """
