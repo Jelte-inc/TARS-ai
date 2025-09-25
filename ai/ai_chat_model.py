@@ -29,5 +29,4 @@ def ai(user_input:str):
              
     except Exception as e:
         print("Something went wrong:", e)
-    print()
     return full_response
