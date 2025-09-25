@@ -1,6 +1,5 @@
 
 from ai.ai_chat_model import ai
-from speech.listener import speech_listener
 from fastapi import FastAPI
 from pydantic import BaseModel
 
