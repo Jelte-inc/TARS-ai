@@ -1,10 +1,21 @@
-from commands.walking import walking_commands
+
 from ai.ai_chat_model import ai
-from speech.listener import speech_listener
+from fastapi import FastAPI
+from pydantic import BaseModel
 
-while True:
-    user_input = speech_listener()
+app = FastAPI()
 
-    walking_commands(user_input)
+# Voorbeeld input-model
+class InputData(BaseModel):
+    name: str
+    number: int
 
-    ai(user_input)
+# Root endpoint (GET)
+@app.get("/")
+def get(message: str):
+    return ai(message)
+
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=56277) 

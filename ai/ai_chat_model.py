@@ -25,8 +25,11 @@ def ai(user_input:str):
             print(part['message']['content'], end='', flush=True)
           full_response += part['message']['content']
         if hoi:
+          
            return ai(execute_model_output(full_response))
+
              
     except Exception as e:
         print("Something went wrong:", e)
     print()
+    return full_response
