@@ -4,7 +4,7 @@ import datetime
 
 # Functie om modeloutput te verwerken
 def execute_model_output(model_output: str) -> str:
-    weather_forecast(model_output)    
+    return weather_forecast(model_output)    
 
 def ai(user_input:str):
     message_content = user_input
@@ -25,7 +25,8 @@ def ai(user_input:str):
             print(part['message']['content'], end='', flush=True)
           full_response += part['message']['content']
         if hoi:
-           execute_model_output(full_response)
+           return ai(execute_model_output(full_response))
+             
     except Exception as e:
         print("Something went wrong:", e)
     print()
